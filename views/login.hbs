@@ -1,0 +1,211 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="/public/css.css">
+</head>
+<style>
+    	html,body{
+			height: 100%;
+			margin: 0;
+			background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(149,199,20,1) 0%, rgba(0,212,255,1) 96%);
+		
+		}
+   
+   .myForm{
+   	background-color: rgba(0,0,0,0.5) !important;
+   	padding: 15px !important;
+   border-radius: 15px !important;
+   color: white;
+   
+   }
+
+   input{
+   	border-radius:0 15px 15px 0 !important;
+
+   }
+   input:focus{
+       outline: none;
+box-shadow:none !important;
+border:1px solid #ccc !important;
+
+   }
+
+   .br-15{
+   	border-radius: 15px 0 0 15px !important;
+   }
+
+   #add_more{
+   	color: white !important;
+   	background-color: #fa8231 !important;
+   	border-radius: 15px !important;
+   	border: 0 !important;
+
+   }
+   #remove_more{
+   	color: white !important;
+   	background-color: #fc5c65 !important;
+   	border-radius: 15px !important;
+   	border: 0 !important;
+   	display: none;
+
+   }
+   	
+   .submit_btn{
+   	border-radius: 15px !important;
+    background-color: #95c714 !important;
+    border: 0 !important;
+   }
+</style>
+
+<!-- Coded With Love By Mutiullah Samim-->
+<body>
+	<div class="container h-100">
+	<div class="d-flex justify-content-center">
+		<div class="card mt-5 col-md-4 animated bounceInDown myForm">
+			<div class="card-header">
+				<h4>Login form</h4>
+			</div>
+			<div class="card-body">
+				<form>
+					<div id="dynamic_container">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text br-15"><i class="fas fa-envelope-square"></i></span>
+							</div>
+							<input id="Email" type="text" placeholder="your email" class="form-control"/>
+						</div>
+						<div class="input-group mt-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text br-15"><i class="fas fa-user-secret"></i></span>
+							</div>
+							<input id="pass" type="text" placeholder="your pass" class="form-control"/>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+              
+                 <h5 id="lit"></h5>
+				<a class="btn btn-secondary btn-sm" id="literal" href="">My Bitly App(after login only!!)</a>
+				<button type="button" onclick="myfunclog()" class="btn btn-success btn-sm float-right submit_btn">To Login</button>
+			</div>
+              <a style="text-decoration: none;" href="/2">forgot your password press here</a>
+               <a style="text-decoration: none;" href="/1">Create Account</a>
+		</div>
+	</div>
+	</div>
+    <script src="/public/js.js"></script>
+        <script>
+      function myfunclog(){
+    const email=document.getElementById("Email").value;
+    const pass=document.getElementById("pass").value;
+    //פונקצית פץ מחכה את הפוסט מן 
+    //לפוסט מן יש סוג הבקשה : פןסט גט 
+    //לפוסט מן יש סוגי שדות כמו json urlencoded וכו 
+    //לפוסט מן יש האדר שאומר לו מה טייפ השליחה 
+    fetch('user/login',{
+        method:'POST',
+        body:new URLSearchParams({
+            email:email,
+            password:pass
+        })
+        }).then((res)=>{
+            return res.json()}).then((data)=>{
+                document.getElementById('lit').innerHTML=data.msg;
+                if(data.msg=="Login seccessfull"){
+                document.getElementById('literal').href="https://bitlysim.herokuapp.com/";
+                }
+            })       
+}
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+</head>
+<body>
+    <form>
+        <input id="Email" type="text" placeholder="your email"><br>
+        <input id="pass" type="text" placeholder="your pass">
+        <button type="button" onclick="myfunclog()" >press here </button>
+    </form>
+<h2 id="lit"></h2>
+<a id="literal" href="">my link </a>
+    <script>
+      function myfunclog(){
+    const email=document.getElementById("Email").value;
+    const pass=document.getElementById("pass").value;
+    //פונקצית פץ מחכה את הפוסט מן 
+    //לפוסט מן יש סוג הבקשה : פןסט גט 
+    //לפוסט מן יש סוגי שדות כמו json urlencoded וכו 
+    //לפוסט מן יש האדר שאומר לו מה טייפ השליחה 
+    fetch('user/login',{
+        method:'POST',
+        body:new URLSearchParams({
+            email:email,
+            password:pass
+        })
+        }).then((res)=>{
+            return res.json()}).then((data)=>{
+                document.getElementById('lit').innerHTML=data.msg;
+                if(data.msg=="Login seccessfull"){
+                document.getElementById('literal').href="w";
+                }
+            })
+            
+}
+    </script>
+</body>
+</html> --}}
